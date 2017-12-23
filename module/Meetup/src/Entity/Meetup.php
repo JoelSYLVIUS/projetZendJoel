@@ -56,31 +56,49 @@ class Meetup
     /**
      * @return string
      */
+    public function getID() : String
+    { 
+            return $this->id;
+    }
+    /**
+     * @return string
+     */
     public function getTitle() : string
     {
         return $this->title;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription() : string
     {
         return $this->description;
     }
+
 
     public function setDescription(string $description) : void
     {
         $this->description = $description;
     }
 
+    /**
+     * @return string
+     */
     public function getDateStart() : string
     {
         return $this->dateStart;
     }
+
 
     public function setDateStart(string $dateStart) : String
     {
             return $this->dateStart = $dateStart;
     }
 
+    /**
+     * @return string
+     */
     public function getDateEnd() : string
     {
         return $this->dateEnd;

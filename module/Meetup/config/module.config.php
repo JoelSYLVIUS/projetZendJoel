@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Meetup\Form\MeetupForm;
+use Meetup\Form\MeetupFormFactory;
 use Zend\Router\Http\Literal;
 use Meetup\Controller;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -30,6 +31,18 @@ return [
                             ],
                         ],
                     ],
+                    'update' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route'    => '/update[/:id]',
+                            'constraints' =>[
+                                    'id' => '[a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                'action'     => 'update',
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
@@ -41,13 +54,14 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            MeetupForm::class => InvokableFactory::class,
+            MeetupForm::class => MeetupFormFactory::class,
         ],
     ],
     'view_manager' => [
         'template_map' => [
             'meetup/index/index' => __DIR__ . '/../view/meetup/index/index.phtml',
             'meetup/index/add' => __DIR__ . '/../view/meetup/index/add.phtml',
+            'meetup/index/update' => __DIR__ . '/../view/meetup/index/update.phtml',
         ],
     ],
     'doctrine' => [
