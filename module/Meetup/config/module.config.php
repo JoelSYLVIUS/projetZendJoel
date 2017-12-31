@@ -43,6 +43,15 @@ return [
                             ],
                         ],
                     ],
+                    'delete' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route'    => '/delete[/:id]',
+                            'defaults' => [
+                                'action'     => 'delete',
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
@@ -62,6 +71,7 @@ return [
             'meetup/index/index' => __DIR__ . '/../view/meetup/index/index.phtml',
             'meetup/index/add' => __DIR__ . '/../view/meetup/index/add.phtml',
             'meetup/index/update' => __DIR__ . '/../view/meetup/index/update.phtml',
+            'meetup/index/delete' => __DIR__ . '/../view/meetup/index.delete.phtml',
         ],
     ],
     'doctrine' => [

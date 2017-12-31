@@ -51,8 +51,7 @@ final class IndexController extends AbstractActionController
                     $form->getData()['dateStart'],
                     $form->getData()['dateEnd']
                 );
-                //var_dump($form);
-                $this->meetupRepository->add($meet);
+                $this->meetupRepository->add($meetup);
                 return $this->redirect()->toRoute('meetup');
             }
         }
@@ -68,9 +67,9 @@ final class IndexController extends AbstractActionController
     {
         $form = $this->meetupForm;
         $id = $this->params()->fromRoute( 'id' );
-        $meet = $this->meetupRepository ->find($id);
+        $meetup = $this->meetupRepository ->find($id);
 
-        $form->bind($meet);
+        $form->bind($meetup);
 
 
         /* @var $request Request */
@@ -80,8 +79,8 @@ final class IndexController extends AbstractActionController
                 $form->setData($request->getPost());
                 if($form->isValid())
                 {
-                        $meet = $form->getData();
-                        $this->meetupRepositry->save($meet);
+                        $meetup = $form->getData();
+                        $this->meetupRepository->save($meetup);
                         return $this->redirect()->toRoute('meetup');
                 }
         }
@@ -89,7 +88,14 @@ final class IndexController extends AbstractActionController
 
         return new ViewModel([
         'form' => $form,
-        'meet' =>$meet,
+        'meetup' =>$meetup,
         ]);
+    }
+
+    public function deleteAction()
+    {
+        $id = $this->params()->fromRoute('id');
+        $this->meetupRepository->delete($id);
+        return $this->redirect()->toRoute('meetup');
     }
 }

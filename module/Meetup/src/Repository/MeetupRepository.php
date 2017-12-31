@@ -21,10 +21,16 @@ final class MeetupRepository extends EntityRepository
         return new Meetup($name, $description, $dateStart, $dateEnd);
     }
 
-    public function save(Meet $meet) : string
+    public function save(Meetup $meetup) : void
     {
         //Faire le update
-        $this->getEntityManager()->persist($meet);
-        $this->getEntityManager()->flush($meet);
+        $this->getEntityManager()->persist($meetup);
+        $this->getEntityManager()->flush($meetup);
+    }
+
+    public function delete(string $id)
+    {
+        $this->getEntityManager()->remove($this->find($id));
+        $this->getEntityManager()->flush();
     }
 }

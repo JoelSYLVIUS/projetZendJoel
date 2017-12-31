@@ -23,6 +23,5 @@ return [
     'DoctrineModule',
     'DoctrineORMModule',
     'Application',
-    'Cinema',
     'Meetup',
 ];
